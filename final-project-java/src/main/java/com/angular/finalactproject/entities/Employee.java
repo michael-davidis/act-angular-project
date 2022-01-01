@@ -1,6 +1,7 @@
 package com.angular.finalactproject.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,7 @@ public class Employee {
         this.id = id;
         this.name = name;
         this.email = email;
+        ArrayList<Device> employeeDevices = new ArrayList<Device>();
     }
 
     public Long getId() {

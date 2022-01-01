@@ -22,8 +22,7 @@ public class EmployeeDevices {
     public EmployeeDevices() {
     }
 
-    public EmployeeDevices(Long id, Employee employee, Device device) {
-        this.id = id;
+    public EmployeeDevices(Employee employee, Device device) {
         this.employee = employee;
         this.device = device;
     }

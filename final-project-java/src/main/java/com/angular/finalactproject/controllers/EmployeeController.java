@@ -1,7 +1,12 @@
 package com.angular.finalactproject.controllers;
 
+import com.angular.finalactproject.entities.Device;
 import com.angular.finalactproject.entities.Employee;
+import com.angular.finalactproject.entities.EmployeeDevices;
+import com.angular.finalactproject.services.DeviceService;
+import com.angular.finalactproject.services.EmployeeDevicesService;
 import com.angular.finalactproject.services.EmployeeService;
+import com.mysql.cj.x.protobuf.Mysqlx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +18,15 @@ import java.util.List;
 public class EmployeeController {
 
     private final EmployeeService eService;
+    private final EmployeeDevicesService emplDevService;
+    private final DeviceService dService;
 
-    public EmployeeController(@Autowired EmployeeService eService) {
+    public EmployeeController(@Autowired EmployeeService eService,
+                              @Autowired EmployeeDevicesService emplDevService,
+                              @Autowired DeviceService dService) {
         this.eService = eService;
+        this.emplDevService = emplDevService;
+        this.dService = dService;
     }
 
     @GetMapping("/employees")
@@ -45,6 +56,16 @@ public class EmployeeController {
             return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
         }
         return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/employee/addDevice/{id}")
+    public ResponseEntity<?> addDeviceToEmployee(@RequestBody Employee employee,
+                                                 @PathVariable("id") Long id) {
+        Device device = dService.findDeviceById(id);
+        EmployeeDevices employeeDevices = new EmployeeDevices(employee, device);
+        emplDevService.saveDeviceToEmployee(employeeDevices);
+
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @GetMapping("/deleteEmployee/{id}")
