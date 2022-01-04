@@ -1,1 +1,10 @@
-<p>tablets works!</p>
+<div class="row">
+    <div class="card col-3" *ngFor="let tablet of tablets">
+        <div class="card-body">
+            <h5 class="card-title">{{tablet.serialNumber}}</h5>
+            <p class="card-text">{{tablet.description}}</p>
+            <p class="card-text">{{tablet.getType()}}</p>
+            <a href="" class="btn btn-primary" (click)="viewTablet(tablet.serialNumber)">View Device</a>
+        </div>
+    </div>
+</div>
