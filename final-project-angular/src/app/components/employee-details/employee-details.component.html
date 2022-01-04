@@ -1,0 +1,28 @@
+<form class="p-5" [formGroup]="myform" (ngSubmit)="editEmployee()" novalidate>
+    <div class="form-group">
+        <label for="pwd">Id:</label>
+        <input type="name" class="form-control" name="id" placeholder="{{currentEmployee.id}}" id="id"
+            formControlName="id">
+    </div>
+    <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" name="email" placeholder="{{currentEmployee.email}}" id="email"
+            formControlName="email">
+    </div> 
+    <div class="form-group">
+        <label for="pwd">Name:</label>
+        <input type="name" class="form-control" name="Name" placeholder="{{currentEmployee.name}}" id="name"
+            formControlName="name">
+    </div>
+
+    <!-- <div class="form-group">
+        <label for="role"></label>
+        <select formControlName="role" name="role" class="form-control w-25">
+            <option value="member">Member</option>
+            <option value="commitee">Commitee</option>
+
+        </select>
+    </div> -->
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
