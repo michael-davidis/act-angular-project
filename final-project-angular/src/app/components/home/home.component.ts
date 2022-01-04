@@ -14,4 +14,8 @@ export class HomeComponent implements OnInit {
   createEmployee() {
     this.router.navigate(['createEmployee']);
   }
+
+  createDevice(){
+    this.router.navigate(['createDevice']);
+  }
 }
