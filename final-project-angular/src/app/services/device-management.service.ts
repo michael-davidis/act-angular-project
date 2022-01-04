@@ -9,21 +9,30 @@ export class DeviceManagementService {
   devices: Device[] = [];
 
   constructor(private http: HttpClient) {
-    // this.getDevices();
+    this.getDevices();
   }
 
+  createDevice(device: Device){
+    this.http.post("https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Devices.json", device).subscribe((response) => {
+      this.getDevices();
+      console.log(response);
+    });
+}
+
   getDevices(){
-    // this.http
-    // .get(
-    //   'https://typescript-ddaddefault-rtdb.firebaseio.com/Employees.json'
-    // )
-    // .subscribe((response: any) => {
-    //   for (let key in response) {
-    //     this.devices.push(
-    //       new Device(key, response[key].name, response[key].email)
-    //     );
-    //   }
-    // });
+    this.http
+    .get(
+      'https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Devices.json'
+    )
+    .subscribe((response: any) => {
+      // for (let key in response) {
+      //   this.devices.push(
+      //     new Device(key, response[key].name, response[key].email)
+      //   );
+      // }
+
+      console.log(response);
+    });
   }
 
   editDevice( device: Device){
