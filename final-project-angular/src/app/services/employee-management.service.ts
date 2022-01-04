@@ -10,11 +10,6 @@ export class EmployeeManagementService {
   employeesIDs: any[] = [];
 
   constructor(private http: HttpClient) {
-    // this.employees = [new Employee(1, "Michael", "michael@gmail.com"), new Employee(2, "John", "john@gmail.com"), new Employee(3, "George", "george@gmail.com")];
-    // for (let employee of this.employees) {
-    //   this.http.post("https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Employees.json", employee).subscribe(() => {
-    //   });
-    // }
     this.getEmployeesData();
   }
 
@@ -45,32 +40,33 @@ export class EmployeeManagementService {
   }
 
   editEmployee(employee: Employee) {
-    // this.http
-    //   .put(
-    //     'https://typescript-dwadaw-default-rtdb.firebaseio.com/Employees/' +
-    //       this.employeesIDs[employee.id] +
-    //       '.json',
-    //     {
-    //       id: employee.id,
-    //       name: 'changed name',
-    //       email: 'changed_email@gmail.com',
-    //     }
-    //   )
-    //   .subscribe((response: any) => {
-    //     let newEmp = response;
-    //     let index = this.employees.findIndex((el) => {
-    //       return (el.id = newEmp.id);
-    //     });
-    //     this.employees[index] = newEmp;
-    //   });
+    this.http
+      .put(
+        'https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Employees/' +
+          this.employeesIDs[employee.id] +
+          '.json',
+        {
+          id: employee.id,
+          name: employee.name,
+          email: employee.email,
+        }
+      )
+      .subscribe((response: any) => {
+        // let newEmp = response;
+        // let index = this.employees.findIndex((el) => {
+        //   return (el.id = newEmp.id);
+        // });
+        // this.employees[index] = newEmp;
+        this.getEmployeesData();
+      });
   }
 
   deleteEmployee(employee: Employee) {
-    // this.http
-    //   .delete("https://typescript-c394dsddsb-default-rtdb.firebaseio.com/Employees/" + employee.id + ".json")
-    //   .subscribe((response: any) => {
-    //     console.log(response);
-    //   });
+    this.http
+      .delete('https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Employees/' + this.employeesIDs[employee.id] + ".json")
+      .subscribe((response: any) => {
+        console.log(response);
+      });
   }
 
   getDevicesOfOneEmployee(employee: Employee) {
