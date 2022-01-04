@@ -1,1 +1,9 @@
-<p>employees works!</p>
+<div class="row">
+    <div class="card col-3" *ngFor="let employee of employees">
+        <div class="card-body">
+            <h5 class="card-title">{{employee.name}}</h5>
+            <p class="card-text">{{employee.email}}</p>
+            <a href="" class="btn btn-primary" (click)="viewEmployee(employee.id)">View Employee</a>
+        </div>
+    </div>
+</div>

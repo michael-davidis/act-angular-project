@@ -23,7 +23,7 @@ export class EmployeesComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  viewEmployee(id: string){
+  viewEmployee(id: number){
     this.router.navigate(['employees', id])
   }
 }
