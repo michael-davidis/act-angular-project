@@ -4,11 +4,12 @@ export class Employee {
   id: number;
   name: string;
   email: string;
-  devicesList: Device[] = [];
+  devicesId: Array<string> = [];
 
-  constructor(id: number, name: string, email: string) {
+  constructor(id: number, name: string, email: string, devicesId: Array<string>) {
     this.id = id;
     this.name = name;
     this.email = email;
+    this.devicesId = devicesId;
   }
 }
