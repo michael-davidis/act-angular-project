@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { RouterModule, Routes } from '@angular/router';
-import { DevicesComponent } from './components/devices/devices.component';
 import { SmartphonesComponent } from './components/smartphones/smartphones.component';
 import { TabletsComponent } from './components/tablets/tablets.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,6 +11,8 @@ import { EmployeeDetailsComponent } from './components/employee-details/employee
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
 import { CreateDeviceComponent } from './components/create-device/create-device.component';
+import { DeviceDetailsComponent } from './components/device-details/device-details.component';
+import { ActionSuccessfulComponent } from './components/action-successful/action-successful.component';
 
 
 
@@ -23,10 +24,6 @@ const appRoutes: Routes = [
   {
     path: 'employees',
     component: EmployeesComponent,
-  },
-  {
-    path: 'devices',
-    component: DevicesComponent,
   },
   {
     path: 'smartphones',
@@ -42,11 +39,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'smartphones/:id',
-    component: SmartphonesComponent,
+    component: DeviceDetailsComponent,
   },
   {
     path: 'tablets/:id',
-    component: TabletsComponent,
+    component: DeviceDetailsComponent,
   },
   {
     path: 'createEmployee',
@@ -55,6 +52,10 @@ const appRoutes: Routes = [
   {
     path: 'createDevice',
     component: CreateDeviceComponent,
+  },
+  {
+    path: 'success',
+    component: ActionSuccessfulComponent,
   },
   {
     path: '',
@@ -71,13 +72,14 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     EmployeesComponent,
-    DevicesComponent,
     SmartphonesComponent,
     TabletsComponent,
     HomeComponent,
     EmployeeDetailsComponent,
     CreateEmployeeComponent,
     CreateDeviceComponent,
+    DeviceDetailsComponent,
+    ActionSuccessfulComponent,
   ],
   imports: [
     BrowserModule,
