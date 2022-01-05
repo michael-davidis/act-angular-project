@@ -21,7 +21,7 @@ export class CreateDeviceComponent implements OnInit {
   }
 
   createDevice(){
-    this.deviceService.createDevice( new Device( this.myform.value.serialNumber, this.myform.value.description, this.myform.value.type) );
+    this.deviceService.createDevice( new Device( this.myform.value.serialNumber, this.myform.value.description, this.myform.value.type, '') );
   }
 
 }

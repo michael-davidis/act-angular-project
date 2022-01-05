@@ -1,28 +1,21 @@
-<form class="p-5" [formGroup]="myform" (ngSubmit)="createDevice()" novalidate>
+<form class="p-5" [formGroup]="myform" (ngSubmit)="createDevice()">
     <div class="form-group">
         <label for="pwd">Serial Number:</label>
         <input type="name" class="form-control" name="serialNumber" placeholder="Enter device's serial number" id="serialNumber"
             formControlName="serialNumber">
     </div>
     <div class="form-group">
-        <label for="email">Email address:</label>
+        <label for="email">Description:</label>
         <input type="text" class="form-control" name="description" placeholder="Enter device's description" id="description"
             formControlName="description">
-    </div> 
-    <div class="form-group">
-        <label for="pwd">Name:</label>
-        <input type="name" class="form-control" name="type" placeholder="Choose device's type" id="type"
-            formControlName="type">
     </div>
-
-    <!-- <div class="form-group">
-        <label for="role"></label>
-        <select formControlName="role" name="role" class="form-control w-25">
-            <option value="member">Member</option>
-            <option value="commitee">Commitee</option>
-
+    <div class="form-group">
+        <label for="role">Type</label>
+        <select formControlName="type" name="role" class="form-control w-25">
+            <option value="1">Smartphone</option>
+            <option value="2">Tablet</option>
         </select>
-    </div> -->
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

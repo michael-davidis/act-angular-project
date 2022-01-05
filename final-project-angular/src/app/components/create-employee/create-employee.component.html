@@ -1,4 +1,4 @@
-<form class="p-5" [formGroup]="myform" (ngSubmit)="createUser()" novalidate>
+<form class="p-5" [formGroup]="myform" (ngSubmit)="createEmployee()">
     <div class="form-group">
         <label for="pwd">Name:</label>
         <input type="name" class="form-control" name="password" placeholder="Enter employee's id" id="id"
@@ -15,14 +15,12 @@
             formControlName="name">
     </div>
 
-    <!-- <div class="form-group">
-        <label for="role"></label>
-        <select formControlName="role" name="role" class="form-control w-25">
-            <option value="member">Member</option>
-            <option value="commitee">Commitee</option>
-
-        </select>
-    </div> -->
+    <div *ngFor="let device of availableDevices; let i=index">
+        <label>
+            <input type="checkbox" [value]="device.serialNumber" (change)="onCheckboxChange($event)" />
+            {{device.description}}
+        </label>
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
