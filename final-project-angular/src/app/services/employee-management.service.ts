@@ -20,6 +20,7 @@ export class EmployeeManagementService {
   }
 
   getEmployeesData(): void {
+    this.employees = [];
     this.http
       .get(
         'https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Employees.json'
@@ -30,7 +31,8 @@ export class EmployeeManagementService {
             new Employee(
               response[key].id,
               response[key].name,
-              response[key].email
+              response[key].email,
+              response[key].devicesId
             )
           );
 
@@ -40,6 +42,7 @@ export class EmployeeManagementService {
   }
 
   editEmployee(employee: Employee) {
+    console.log(employee);
     this.http
       .put(
         'https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Employees/' +
@@ -49,14 +52,10 @@ export class EmployeeManagementService {
           id: employee.id,
           name: employee.name,
           email: employee.email,
+          devicesId: employee.devicesId
         }
       )
       .subscribe((response: any) => {
-        // let newEmp = response;
-        // let index = this.employees.findIndex((el) => {
-        //   return (el.id = newEmp.id);
-        // });
-        // this.employees[index] = newEmp;
         this.getEmployeesData();
       });
   }
@@ -67,9 +66,5 @@ export class EmployeeManagementService {
       .subscribe((response: any) => {
         console.log(response);
       });
-  }
-
-  getDevicesOfOneEmployee(employee: Employee) {
-    // TODO
   }
 }

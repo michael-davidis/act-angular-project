@@ -25,7 +25,24 @@ export class DeviceManagementService {
       });
   }
 
+  public getDevicesNow() {
+    return this.http.get(
+      'https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Devices.json'
+    );
+  }
+
+  public getDevicesIds() {
+    return this.http.get(
+      'https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Devices.json'
+    );
+  }
+
+  public getDeviceById(deviceId: string) {
+    return this.devices.find((x) => x.serialNumber === deviceId);
+  }
+
   getDevices() {
+    this.devices = [];
     let devicesIds: any[] = [];
     this.http
       .get(
@@ -37,41 +54,41 @@ export class DeviceManagementService {
             new Device(
               response[key].serialNumber,
               response[key].description,
-              response[key].type
+              response[key].type,
+              null
             )
           );
 
-          devicesIds[response[key].id] = key + '';
+          devicesIds[response[key].serialNumber] = key + '';
         }
 
         this.devicesIds = devicesIds;
+
       });
   }
 
   editDevice(device: Device) {
-    // this.http
-    //   .put(
-    //     'https://typescript-dwadaw-default-rtdb.firebaseio.com/Employees/' +
-    //     device. +
-    //       '.json',
-    //     {
-    //       id: device.id,
-    //       name: 'changed name',
-    //       email: 'changed_email@gmail.com',
-    //     }
-    //   )
-    //   .subscribe((response: any) => {
-    //     let newEmp = response;
-    //     let index = this.devices.findIndex((el) => {
-    //       return (el.id = newEmp.id);
-    //     });
-    //     this.devices[index] = newEmp;
-    //   });
+    this.http
+      .put(
+        'https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Devices/' +
+          this.devicesIds[device.serialNumber as any] +
+          '.json',
+        {
+          serialNumber: device.serialNumber,
+          description: device.description,
+          type: device.type,
+          owner: device.owner,
+        }
+      )
+      .subscribe((response: any) => {
+        this.getDevices();
+      });
   }
 
   deleteDevice(device: Device) {
+    console.log(this.devicesIds[device.serialNumber as any]);
     // this.http
-    // .delete("https://typescript-c394dsddsb-default-rtdb.firebaseio.com/Employees/" + device.id + ".json")
+    // .delete("https://act-final-project-default-rtdb.europe-west1.firebasedatabase.app/Devices/" + this.devicesIds[device.serialNumber as any] + ".json")
     // .subscribe((response: any) => {
     //   console.log(response);
     // });

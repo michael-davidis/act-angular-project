@@ -14,11 +14,11 @@ export class SmartphonesComponent implements OnInit {
   constructor( private router: Router, private deviveManagementService: DeviceManagementService ) { }
 
   ngOnInit(): void {
-    this.smartphones = this.deviveManagementService.devices.filter( device => device.type == 1);
+    this.smartphones = this.deviveManagementService.devices.filter( device => device.type == 1 );
   }
 
-  viewSmartphone( id: string){
-    this.router.navigate(['smartphones', id])
+  viewSmartphone(id: string){
+    this.router.navigate(['smartphones', id]);
   }
 
 }
